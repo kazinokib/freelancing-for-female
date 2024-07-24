@@ -1,5 +1,5 @@
 <?php
-include('page_content/header.php'); 
+include('page_content/header.php');
 
 $sender_id = $_REQUEST['sender_id'];
 $reciever_id = $_REQUEST['receiver_id'];
@@ -25,15 +25,15 @@ $res_chat = mysqli_query($conn,$sql_chat);
 	================================================== -->
 	<div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
-			
-			
-	
+
+
+
 				<div class="messages-container margin-top-0">
 
 					<div class="messages-container-inner">
 
 						<!-- Messages -->
-						
+
 						<!-- Messages / End -->
 
 						<!-- Message Content -->
@@ -43,10 +43,10 @@ $res_chat = mysqli_query($conn,$sql_chat);
 								<h4>Sindy Forest</h4>
 								<a href="#" class="message-action"><i class="icon-feather-trash-2"></i> Delete Conversation</a>
 							</div>
-							
+
 							<!-- Message Content Inner -->
 							<div class="message-content-inner">
-									
+
 									<!-- Time Sign -->
 									<div class="message-time-sign">
 										<span>28 June, 2019</span>
@@ -69,21 +69,21 @@ $res_chat = mysqli_query($conn,$sql_chat);
 											<div class="message-text"><p><?php  echo $row_chat['receiver_msg'] ?></p></div>
 										</div>
 
-									<?php } ?>	
+									<?php } ?>
 										<div class="clearfix"></div>
 									</div>
-                                        
-									
+
+
 									<!-- Time Sign -->
-									
-
-									
 
 
-									
+
+
+
+
 							</div>
 							<!-- Message Content Inner / End -->
-							
+
 							<!-- Reply Area -->
 							<div class="message-reply">
 								<textarea cols="1" rows="1" placeholder="Your Message" data-autoresize></textarea>
@@ -99,12 +99,12 @@ $res_chat = mysqli_query($conn,$sql_chat);
 
 
 
-			
+
 			<!-- Footer -->
 			<div class="dashboard-footer-spacer"></div>
 			<div class="small-footer margin-top-15">
 
-				
+
 				<ul class="footer-social-links">
 					<li>
 						<a href="#" title="Facebook" data-tippy-placement="top">
@@ -157,12 +157,12 @@ $res_chat = mysqli_query($conn,$sql_chat);
 
 			<!-- Tab -->
 			<div class="popup-tab-content" id="tab">
-				
+
 				<!-- Welcome Text -->
 				<div class="welcome-text">
 					<h3>Do Not Forget 😎</h3>
 				</div>
-					
+
 				<!-- Form -->
 				<form method="post" id="add-note">
 
@@ -175,7 +175,7 @@ $res_chat = mysqli_query($conn,$sql_chat);
 					<textarea name="textarea" cols="10" placeholder="Note" class="with-border"></textarea>
 
 				</form>
-				
+
 				<!-- Button -->
 				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="add-note">Add Note <i class="icon-material-outline-arrow-right-alt"></i></button>
 
@@ -206,7 +206,7 @@ $res_chat = mysqli_query($conn,$sql_chat);
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
-$('#snackbar-user-status label').click(function() { 
+$('#snackbar-user-status label').click(function() {
 	Snackbar.show({
 		text: 'Your status has been changed!',
 		pos: 'bottom-center',
@@ -215,12 +215,11 @@ $('#snackbar-user-status label').click(function() {
 		duration: 3000,
 		textColor: '#fff',
 		backgroundColor: '#383838'
-	}); 
-}); 
+	});
+});
 </script>
 
 
 </body>
 
-<!-- Mirrored from www.vasterad.com/themes/hireo/dashboard-messages.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Mar 2019 13:32:59 GMT -->
 </html>

@@ -1,15 +1,15 @@
-<?php 
+<?php
  @ob_start();
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-  
-  
- 
+
+
+
   include ("connection.php");
   include("page_content/header.php");
   if($user_id == NULL || $user_id =="")
 {
-   header("location:login.php"); 
-}  
+   header("location:login.php");
+}
 
 ?>
 <div class="clearfix"></div>
@@ -34,7 +34,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 					</span>
 					<span class="trigger-title">Dashboard Navigation</span>
 				</a>
-				
+
 				<!-- Navigation -->
 				<div class="dashboard-nav">
 					<div class="dashboard-nav-inner">
@@ -53,15 +53,15 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 							<!--<li><a href="#"><i class="icon-material-outline-star-border"></i> Bookmarks</a></li>-->
 							<!--<li><a href="#"><i class="icon-material-outline-rate-review"></i> Reviews</a></li>-->
 						</ul>
-						
-						
+
+
 
 						<ul data-submenu-title="Account">
 							<!--<li><a href="dashboard-settings.html"><i class="icon-material-outline-settings"></i> Settings</a></li>-->
 								<li><a href="update_profile.php"><i class="icon-material-outline-settings"></i> Update Profile</a></li>
 							<li><a href="logout.php"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
 						</ul>
-						
+
 					</div>
 				</div>
 				<!-- Navigation / End -->
@@ -76,10 +76,10 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	================================================== -->
 	<div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
-			
+
 			<!-- Dashboard Headline -->
-			
-	
+
+
 			<!-- Fun Facts Container -->
 			<div class="fun-facts-container">
 				<div class="fun-fact" data-fun-fact-color="#36bd78">
@@ -105,20 +105,20 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 				</div>
 
 				<!-- Last one has to be hidden below 1600px, sorry :( -->
-			
+
 			</div>
-			
+
 			<!-- Row -->
-		
+
 			<!-- Row / End -->
 
 			<!-- Row -->
-			
+
 			<!-- Row / End -->
 
 			<!-- Footer -->
 			<div class="dashboard-footer-spacer"></div>
-			
+
 			<!-- Footer / End -->
 
 		</div>
@@ -147,12 +147,12 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 			<!-- Tab -->
 			<div class="popup-tab-content" id="tab">
-				
+
 				<!-- Welcome Text -->
 				<div class="welcome-text">
 					<h3>Do Not Forget 😎</h3>
 				</div>
-					
+
 				<!-- Form -->
 				<form method="post" id="add-note">
 
@@ -165,7 +165,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 					<textarea name="textarea" cols="10" placeholder="Note" class="with-border"></textarea>
 
 				</form>
-				
+
 				<!-- Button -->
 				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="add-note">Add Note <i class="icon-material-outline-arrow-right-alt"></i></button>
 
@@ -196,7 +196,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
-$('#snackbar-user-status label').click(function() { 
+$('#snackbar-user-status label').click(function() {
 	Snackbar.show({
 		text: 'Your status has been changed!',
 		pos: 'bottom-center',
@@ -205,8 +205,8 @@ $('#snackbar-user-status label').click(function() {
 		duration: 3000,
 		textColor: '#fff',
 		backgroundColor: '#383838'
-	}); 
-}); 
+	});
+});
 </script>
 
 <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
@@ -262,7 +262,7 @@ $('#snackbar-user-status label').click(function() {
 	            	},
 				}],
 				xAxes: [{
-					scaleLabel: { display: false },  
+					scaleLabel: { display: false },
 					gridLines:  { display: false },
 				}],
 			},
@@ -287,5 +287,5 @@ $('#snackbar-user-status label').click(function() {
 
 </body>
 
-<!-- Mirrored from www.vasterad.com/themes/hireo/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Mar 2019 13:32:59 GMT -->
+
 </html>

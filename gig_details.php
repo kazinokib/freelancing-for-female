@@ -1,15 +1,15 @@
 <?php
  @ob_start();
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-  
-  
- 
+
+
+
   include ("connection.php");
   include("page_content/header.php");
   if($user_id == NULL || $user_id =="")
 {
-   header("location:login.php"); 
-}  
+   header("location:login.php");
+}
   $gig_id = $_REQUEST['gig_id'];
   $sql = "SELECT * from gig where id = $gig_id";
   $res = mysqli_query($conn,$sql);
@@ -25,43 +25,43 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
   date_default_timezone_set('Asia/Dhaka');
            $date = date('d-m-Y');
-        $currentdate= strtotime( $date );   
-    $timefromdb = strtotime( $gig_date );  
-    $daysleft = ($currentdate - $timefromdb)/(60 * 60 * 24);      
+        $currentdate= strtotime( $date );
+    $timefromdb = strtotime( $gig_date );
+    $daysleft = ($currentdate - $timefromdb)/(60 * 60 * 24);
 
     $remaining_day= $gig_duration - $daysleft;
-    
 
-      
-           
+
+
+
 
   $sql2 = "select * from user where id = $gig_given_id";
   $res2 = mysqli_query($conn,$sql2);
   $row2 = mysqli_fetch_array($res2);
   $name = $row2['name'];
-  
-   
+
+
      $sql3 = "SELECT * from gig_apply where employee_id =$user_id and gig_id = $gig_id";
   $res3 = mysqli_query($conn,$sql3);
   $previously_bid = mysqli_num_rows($res3);
 
    $sql3 = "SELECT * from rating where rating_to = $gig_given_id ";
-  
+
   $res3 = mysqli_query($conn,$sql3);
   $rating =0;
-  
+
   while($row3 = mysqli_fetch_array($res3))
   {
       $rating= $rating+$row3["given_rating"];
   }
-  
-  
+
+
   $rating =  $rating/mysqli_num_rows($res3);
   $rating = round($rating,1);
-  
-  
+
+
   $res4 = mysqli_query($conn,$sql3);
-  
+
 
 
 ?>
@@ -84,9 +84,9 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 							<h3><?php echo $gig_title ?></h3>
 							<h5><?php echo $name ?></h5>
 							<ul>
-								
+
 								<li><div class="star-rating" data-rating="<?php echo $rating ?>"></div></li>
-								
+
 							</ul>
 						</div>
 					</div>
@@ -107,16 +107,16 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 ================================================== -->
 <div class="container">
 	<div class="row">
-		
+
 		<!-- Content -->
 		<div class="col-xl-8 col-lg-8 content-right-offset">
-			
+
 			<!-- Description -->
 			<div class="single-page-section">
 				<h3 class="margin-bottom-25">Project Description</h3>
 				<p><?php echo $gig_description ?></p>
 
-				
+
 			</div>
 
 			<!-- Atachments -->
@@ -136,7 +136,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 													</figure>
 												</div>
 
-												
+
 
 
 											</article>
@@ -145,18 +145,18 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 			</div>
 
 			<!-- Skills -->
-			
+
 			<div class="clearfix"></div>
-			
+
 			<!-- Freelancers Bidding -->
-			
-			
+
+
 			<div class="boxed-list margin-bottom-60">
 				<div class="boxed-list-headline">
 					<h3><i class="icon-material-outline-group"></i> Review  </h3>
 				</div>
 				<ul class="boxed-list-ul">
-				    <?php 
+				    <?php
 				         while($row4 = mysqli_fetch_array($res4))
 				         {
 				             $rating_from = $row4['rating_from'];
@@ -165,41 +165,41 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 				             $row_user = mysqli_fetch_array($res_user);
 				             $name = $row_user['name'];
 				           //  file_put_contents("test2.txt",$row4['given_rating']." ".$row4['given_review']);
-				             
+
 				    ?>
 					<li>
 						<div class="bid">
 							<div class="bids-content">
-								 
+
 								<div class="freelancer-name">
 									<h4><a href="#"><?php echo $name ?> </a></h4>
-									
+
 									<p><?php echo $row4["given_review"] ?></p>
 								</div>
 							</div>
-							
+
 							<div class="bids-bid">
 								<div class="bid-rate">
 								<div class="star-rating" data-rating='<?php echo $row4["given_rating"] ?>'></div>
-								
+
 								</div>
 							</div>
 						</div>
 					</li>
-					
+
 					<?php
-					
+
 				         }
 					?>
-					
-				
-				
+
+
+
 				</ul>
-			</div> 
-			
+			</div>
+
 
 		</div>
-		
+
 
 		<!-- Sidebar -->
 		<div class="col-xl-4 col-lg-4">
@@ -218,7 +218,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 							<!-- Price Slider -->
 							<div class="bidding-value">BDT<span id="biddingVal"></span></div>
 							<input class="bidding-slider" id ="rate" type="text" value="" data-slider-handle="custom" data-slider-currency="$" data-slider-min='<?php echo $base_price_min ?>' data-slider-max='<?php echo $base_price_max ?>' data-slider-value="auto" data-slider-step="50" data-slider-tooltip="hide" />
-							
+
 							<!-- Headline -->
 							<span class="bidding-detail margin-top-30">Set your <strong>wanted delivery time</strong></span>
 
@@ -235,7 +235,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 								<div class="bidding-field">
 									<select class="selectpicker default">
 										<option selected>Days</option>
-										
+
 									</select>
 								</div>
 							</div>
@@ -247,11 +247,11 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
                                {
 							 ?>
 							<a href="#small-dialog" class="apply-now-button popup-with-zoom-anim margin-bottom-50">Confirm <i class="icon-material-outline-arrow-right-alt"></i></a>
-							<?php 
+							<?php
                             }
 
                             else{
-                               
+
 							?>
 							<button type="button" disabled  class="btn btn-danger"> You already apply for this gig</button>
                           <?php
@@ -259,7 +259,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
                             }
                           ?>
 						</div>
-						
+
 					</div>
 				</div>
 
@@ -330,28 +330,28 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 			<!-- Tab -->
 			<div class="popup-tab-content" id="tab">
-				
+
 				<!-- Welcome Text -->
 				<div class="welcome-text">
 					<h3>Discuss your project</h3>
 				</div>
-					
-				<!-- Form -->
-				
 
-					
+				<!-- Form -->
+
+
+
 
 					<textarea name="textarea" id="bid_message" cols="10" placeholder="Message" class="with-border"></textarea>
 
-					
-				
-				
+
+
+
 				<!-- Button -->
 				<button onclick="apply_gig()" class="button margin-top-35 full-width button-sliding-icon ripple-effect" type="button">Confirm <i class="icon-material-outline-arrow-right-alt"></i></button>
 
 			</div>
 			<!-- Login -->
-			
+
 
 		</div>
 	</div>
@@ -390,10 +390,10 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
     formData.append("user_id",<?php echo $user_id ?>);
     formData.append("gig_given_id",<?php echo $gig_given_id ?>);
    formData.append("gig_id",<?php echo $gig_id ?>);
- 
+
     formData.append("apply_gig","apply_gig");
-      
-     
+
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -404,17 +404,17 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
          swal({
   title: "Your request has been successfully placed",
- 
+
   icon: "success",
-  
- 
+
+
 })
 .then((isConfrim) => {
   if (isConfrim) {
      location.reload();
-  } 
+  }
 });
-        
+
 
       },
 
@@ -429,7 +429,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
-$('#snackbar-user-status label').click(function() { 
+$('#snackbar-user-status label').click(function() {
 	Snackbar.show({
 		text: 'Your status has been changed!',
 		pos: 'bottom-center',
@@ -438,26 +438,26 @@ $('#snackbar-user-status label').click(function() {
 		duration: 3000,
 		textColor: '#fff',
 		backgroundColor: '#383838'
-	}); 
-}); 
+	});
+});
 
 // Snackbar for "place a bid" button
-$('#snackbar-place-bid').click(function() { 
+$('#snackbar-place-bid').click(function() {
 	Snackbar.show({
 		text: 'Your bid has been placed!',
-	}); 
-}); 
+	});
+});
 
 
 // Snackbar for copy to clipboard button
-$('.copy-url-button').click(function() { 
+$('.copy-url-button').click(function() {
 	Snackbar.show({
 		text: 'Copied to clipboard!',
-	}); 
-}); 
+	});
+});
 </script>
 
 </body>
 
-<!-- Mirrored from www.vasterad.com/themes/hireo/single-task-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Mar 2019 13:32:35 GMT -->
+
 </html>

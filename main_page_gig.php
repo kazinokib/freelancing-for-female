@@ -1,20 +1,20 @@
 <?php
   @ob_start();
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-  
-  
- 
+
+
+
   include ("connection.php");
   include("page_content/header.php");
   if($user_id == NULL || $user_id =="")
 {
-   header("location:login.php"); 
-}  
-  
+   header("location:login.php");
+}
+
   $location = $_REQUEST['location'];
   $category = $_REQUEST['category'];
     //file_put_contents("text.txt", $location." ".$category);
- 
+
 
     if($location === "all" and $category === "all")
   {
@@ -27,7 +27,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
   {
   	   $sql = "SELECT * from gig where city = '$location' and user_id <> $user_id";
   }
-  else 
+  else
   {
   	 $sql = "SELECT * from gig where city = '$location' and job_category = '$category' and user_id <> $user_id";
   }
@@ -51,8 +51,8 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	<div class="full-page-sidebar">
 		<div class="full-page-sidebar-inner" data-simplebar>
 			<div class="sidebar-container">
-				
-			 
+
+
 
 				<div class="sidebar-widget">
 					<h3>Location</h3>
@@ -64,7 +64,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 					</div>
 				</div>
 
-				
+
 				<!-- Keywords -->
 				<!-- div class="sidebar-widget">
 					<h3>Keywords</h3>
@@ -93,14 +93,14 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 							<option>Scented Candle</option>
 					</select>
 				</div>
-				
+
 				<!-- Job Types -->
-				
+
 
 				<!-- Salary -->
-			
+
 				<!-- Tags -->
-				
+
 
 			</div>
 			<!-- Sidebar Container / End -->
@@ -109,31 +109,31 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 			<div class="sidebar-search-button-container">
 				<button onclick="filter()" type = "submit" class="button ripple-effect">Search</button>
 			</div>
-			 
+
 			<!-- Search Button / End-->
-             
+
 		</div>
 	</div>
 	<!-- Full Page Sidebar / End -->
-	
+
 	<!-- Full Page Content -->
 	<div class="full-page-content-container" data-simplebar>
 		<div class="full-page-content-inner">
 
-			
+
 
 			<div class="listings-container grid-layout margin-top-35">
-				    
+
 				    <?php if($num_rows == 0)
 				      {
                        ?>
                   <h1> No Search matches</h1>
-                       <?php 
-      
-				       }
-				       
+                       <?php
 
-				       else{ 
+				       }
+
+
+				       else{
                             while($row = mysqli_fetch_array($res))
                             {
 
@@ -168,35 +168,35 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 						<span class="bookmark-icon"></span>
 						<ul>
 							<li><i class="icon-material-outline-location-on"></i> <?php echo $row['city'] ?></li>
-						
+
 							<li><i class="icon-material-outline-account-balance-wallet"></i> <?php echo $row['base_price_min']?>-<?php echo $row['base_price_max'] ?></li>
-						
+
 						</ul>
 					</div>
-				</a>	
-				<?php 
+				</a>
+				<?php
 			}
                       }
 
 				?>
 
-			
-
-				
-				
-
-			
 
 
-			
 
-				
-				
-				<!-- Job Listing -->
-				
+
+
+
+
+
+
+
+
 
 				<!-- Job Listing -->
-				
+
+
+				<!-- Job Listing -->
+
 
 			</div>
 
@@ -218,7 +218,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 			<!-- Pagination / End -->
 
 			<!-- Footer -->
-			
+
 			<!-- Footer / End -->
 
 		</div>
@@ -252,10 +252,10 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 <script type="text/javascript">
 
 
-	
+
 	function filter()
 	{
-	
+
 	var city = $(".city").val();
 	var category = $("#category").val();
       if(!city)
@@ -275,7 +275,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
-$('#snackbar-user-status label').click(function() { 
+$('#snackbar-user-status label').click(function() {
 	Snackbar.show({
 		text: 'Your status has been changed!',
 		pos: 'bottom-center',
@@ -284,15 +284,15 @@ $('#snackbar-user-status label').click(function() {
 		duration: 3000,
 		textColor: '#fff',
 		backgroundColor: '#383838'
-	}); 
-}); 
+	});
+});
 </script>
 
 <script type="text/javascript">
-	
+
   function fetch_data()
   {
-          
+
   }
 </script>
 
@@ -315,5 +315,5 @@ $('#snackbar-user-status label').click(function() {
 
 </body>
 
-<!-- Mirrored from www.vasterad.com/themes/hireo/jobs-grid-layout-full-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Mar 2019 13:32:32 GMT -->
+
 </html>

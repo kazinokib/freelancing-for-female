@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-<!-- Mirrored from www.vasterad.com/themes/hireo/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Mar 2019 13:33:22 GMT -->
 <head>
 
 <!-- Basic Page Needs
@@ -28,10 +27,10 @@
 	<!-- Header -->
 	<div id="header">
 		<div class="container">
-			
+
 			<!-- Left Side Content -->
 			<div class="left-side">
-				
+
 				<!-- Logo -->
 				<div id="logo">
 					<a href="index.php"><img src="images/logo.jpeg" alt=""></a>
@@ -41,17 +40,17 @@
 				<nav id="navigation">
 					<ul id="responsive">
 
-						
-						
 
-						
+
+
+
 
 
 					</ul>
 				</nav>
 				<div class="clearfix"></div>
 				<!-- Main Navigation / End -->
-				
+
 			</div>
 			<!-- Left Side Content / End -->
 
@@ -59,7 +58,7 @@
 			<!-- Right Side Content / End -->
 			<div class="right-side">
 
-				
+
 
 			</div>
 			<!-- Right Side Content / End -->
@@ -82,7 +81,7 @@
 				<h2>Verification Code</h2>
 
 				<!-- Breadcrumbs -->
-				
+
 
 			</div>
 		</div>
@@ -101,23 +100,23 @@
 				<!-- Welcome Text -->
 				<div class="welcome-text">
 					<h3>A verification code sent to your mobile. Please enter verification code below</h3>
-					
+
 				</div>
-					
+
 				<!-- Form -->
-				
+
 					<div class="input-with-icon-left">
 						<i class="icon-material-baseline-mail-outline"></i>
 						<input type="text" class="input-text with-border" name="mobile" id="otp" placeholder="Enter Verification Code" required/>
 					</div>
 
-					
+
 					<button type="button" onclick = "resend_otp()" class="forgot-password">Resend Otp</a>
-				
-				
+
+
 				<!-- Button -->
 				<button class="button full-width button-sliding-icon ripple-effect margin-top-10" type="button" onclick="verify()">Enter <i class="icon-material-outline-arrow-right-alt"></i></button>
-				
+
 				<!-- Social Login -->
 				<!-- <div class="social-login-separator"><span>or</span></div>
 				<div class="social-login-buttons">
@@ -146,8 +145,8 @@
 <!-- Scripts
 ================================================== -->
 <script type="text/javascript">
-	
-	
+
+
 	function verify()
 	{
 	    var otp = $("#otp").val();
@@ -166,10 +165,10 @@
          if(msg=="not_ok")
          {
          	alert("Verification code not match");
-         }  
+         }
          else{
          	 window.location.href = 'main_page_job.php?category=all&location=all';
-         }      
+         }
 
       },
 
@@ -195,7 +194,7 @@
     });
 
 	}
-	
+
 	function login()
 	{
 		var mobile = $("#mobile").val();
@@ -203,12 +202,12 @@
       var formData= new FormData();
     formData.append('mobile',mobile);
     formData.append("password",password);
-   
-    
- 
+
+
+
     formData.append("login","login");
-      
-     
+
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -221,10 +220,10 @@
          if(msg=="not_ok")
          {
          	alert("Mobile number and password not match")
-         }  
+         }
          else{
          	 window.location.href = 'main_page_job.php?category=all&location=all';
-         }      
+         }
 
       },
 
@@ -251,7 +250,7 @@
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
-$('#snackbar-user-status label').click(function() { 
+$('#snackbar-user-status label').click(function() {
 	Snackbar.show({
 		text: 'Your status has been changed!',
 		pos: 'bottom-center',
@@ -260,8 +259,8 @@ $('#snackbar-user-status label').click(function() {
 		duration: 3000,
 		textColor: '#fff',
 		backgroundColor: '#383838'
-	}); 
-}); 
+	});
+});
 </script>
 
 </body>

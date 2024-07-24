@@ -1,17 +1,17 @@
 <?php
 @ob_start();
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-  
-  
- 
+
+
+
   include ("connection.php");
   include("page_content/header.php");
   if($user_id == NULL || $user_id =="")
 {
-   header("location:login.php"); 
-}  
+   header("location:login.php");
+}
  $sender_id = $user_id;
-  
+
 ?>
 <div class="clearfix"></div>
 <!-- Header Container / End -->
@@ -35,7 +35,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 					</span>
 					<span class="trigger-title">Dashboard Navigation</span>
 				</a>
-				
+
 				<!-- Navigation -->
 				<div class="dashboard-nav">
 					<div class="dashboard-nav-inner">
@@ -54,7 +54,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 							<!--<li><a href="dashboard-bookmarks.html"><i class="icon-material-outline-star-border"></i> Bookmarks</a></li>-->
 							<!--<li><a href="dashboard-reviews.html"><i class="icon-material-outline-rate-review"></i> Reviews</a></li>-->
 						</ul>
-						
+
 						<!--<ul data-submenu-title="Organize and Manage">-->
 						<!--	<li><a href="#"><i class="icon-material-outline-business-center"></i> Jobs</a>-->
 						<!--		<ul>-->
@@ -78,7 +78,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 								<li ><a href="update_profile.php"><i class="icon-material-outline-settings"></i> Update Profile</a></li>
 							<li><a href="logout.php"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
 						</ul>
-						
+
 					</div>
 				</div>
 				<!-- Navigation / End -->
@@ -93,9 +93,9 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	================================================== -->
 	<div class="dashboard-content-container" data-simplebar>
 			<div class="dashboard-content-inner" >
-			
+
 			<!-- Dashboard Headline -->
-			
+
 			<!-- Row -->
 			<div class="row">
 
@@ -104,10 +104,10 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 					<div class="dashboard-box margin-top-0">
 
 						<!-- Headline -->
-						
+
 						<div class="content">
 							<ul class="dashboard-box-list">
-								<?php while($row_bid = mysqli_fetch_array($res_bid) ){ 
+								<?php while($row_bid = mysqli_fetch_array($res_bid) ){
 									  $bid_id = $row_bid['bid_id'];
                                       $freelancer_id = $row_bid['user_id'];
                                       $job_id =$row_bid['job_id'];
@@ -117,7 +117,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
                                       $res = mysqli_query($conn,$sql);
                                       $row = mysqli_fetch_array($res);
                                       $name = $row['name'];
-                                      $rating = $row['rating']; 
+                                      $rating = $row['rating'];
                                       $mobile_number = $row['mobile_number'];
                                       $msg = $row_bid['bidding_message'];
                                       $sql_job = "select * from job where id = $job_id";
@@ -138,7 +138,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 										<div class="freelancer-overview-inner">
 
 											<!-- Avatar -->
-											
+
 
 											<!-- Name -->
 											<div class="freelancer-name">
@@ -146,7 +146,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 												<h4><a href="#" style="color:blue"><?php echo $name ?> </a> is bidding your job at <?php echo $bidding_price?>tk within <?php echo $work_duration ?> days </h4>
 
 												<!-- Details -->
-												
+
 												<span class="freelancer-detail-item"><i class="icon-feather-phone"></i><?php echo $mobile_number?> </span>
 
 												<!-- Rating -->
@@ -168,13 +168,13 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 										</div>
 									</div>
 								</li>
-								<?php  
+								<?php
 
                                  }
 
 								?>
 
-								<?php while($row_gig = mysqli_fetch_array($res_gig) ){ 
+								<?php while($row_gig = mysqli_fetch_array($res_gig) ){
 
                                          $user_id = $row_gig['employee_id'];
                                          $gig_id = $row_gig['gig_id'];
@@ -185,7 +185,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
                                       $res = mysqli_query($conn,$sql);
                                       $row = mysqli_fetch_array($res);
                                       $name = $row['name'];
-                                      $rating = $row['rating']; 
+                                      $rating = $row['rating'];
                                       $mobile_number = $row['mobile_number'];
                                       $msg = $row_gig['message'];
                                       $sql_gig = "select * from gig where id = $gig_id";
@@ -200,7 +200,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 										<div class="freelancer-overview-inner">
 
 											<!-- Avatar -->
-											
+
 
 											<!-- Name -->
 											<div class="freelancer-name">
@@ -211,7 +211,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 
 												<!-- Details -->
-												
+
 												<span class="freelancer-detail-item"><i class="icon-feather-phone"></i><?php echo $mobile_number?> </span>
 
 												<!-- Rating -->
@@ -225,19 +225,19 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 												<!-- Buttons -->
 												<div class="buttons-to-right always-visible margin-top-25 margin-bottom-5">
 													<a href="javascript:;" onclick='accept_gig(<?php echo $gig_apply_id ?>,<?php echo $gig_id ?>)' class="button ripple-effect"><i class="icon-feather-file-text"></i> Accept</a>
-												
+
 													<a href="javascript:;" onclick="remove_gig(<?php echo $gig_apply_id ?>)" class="button gray ripple-effect ico" title="Remove gig" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 												</div>
 											</div>
 										</div>
 									</div>
 								</li>
-								<?php  
+								<?php
                                  }
 								?>
 
 
-								<?php while($row_bid_accept = mysqli_fetch_array($res_bid_accept) ){ 
+								<?php while($row_bid_accept = mysqli_fetch_array($res_bid_accept) ){
                                          $bid_id = $row_bid_accept['bid_id'];
                                          $client_id = $row_bid_accept['job_given_id'];
                                          $job_id = $row_bid_accept['job_id'];
@@ -253,7 +253,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
                                       $job_title = $row_job['job_title'];
 
-                                      // $rating = $row['rating']; 
+                                      // $rating = $row['rating'];
                                       // $mobile_number = $row['mobile_number'];
                                       // $msg = $row_gig['message'];
                                       // $sql_gig = "select * from gig where id = $gig_id";
@@ -268,12 +268,12 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 										<div class="freelancer-overview-inner">
 
 											<!-- Avatar -->
-											
+
 
 											<!-- Name -->
 											<div class="freelancer-name">
 
-													
+
 												<h4><a href="#"  style="color:blue"><?php echo $name ?> </a> accepted your bid </h4>
 
 												<h4><strong>Job title: </strong><?php echo $job_title ?> </h4>
@@ -283,27 +283,27 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 
 												<!-- Details -->
-												
-												
+
+
 
 												<!-- Buttons -->
 
 												<div class="buttons-to-right always-visible margin-top-25 margin-bottom-5">
 													<a href="job_detail.php?job_id=<?php echo $job_id ?>"   class="button ripple-effect"><i class="icon-feather-file-text"></i> Job Details </a>
 													<a href="javascript:;" onclick="remove_notification(<?php echo $bid_id ?>)" class="button gray ripple-effect ico" title="Remove gig" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
-												
+
 											</div>
 										</div>
 									</div>
 								</li>
-								<?php  
+								<?php
                                  }
 								?>
 
 
-							
 
-								
+
+
 
 							</ul>
 						</div>
@@ -315,7 +315,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 			<!-- Footer -->
 			<div class="dashboard-footer-spacer"></div>
-			
+
 			<!-- Footer / End -->
 
 		</div>
@@ -344,12 +344,12 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 			<!-- Tab -->
 			<div class="popup-tab-content" id="tab">
-				
+
 				<!-- Welcome Text -->
 				<div class="welcome-text">
 					<h3>Do Not Forget 😎</h3>
 				</div>
-					
+
 				<!-- Form -->
 				<form method="post" id="add-note">
 
@@ -362,7 +362,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 					<textarea name="textarea" cols="10" placeholder="Note" class="with-border"></textarea>
 
 				</form>
-				
+
 				<!-- Button -->
 				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="add-note">Add Note <i class="icon-material-outline-arrow-right-alt"></i></button>
 
@@ -412,17 +412,17 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
       type:"POST",
       data:formData,
       success:function(data,status){
-         
-        
+
+
   location.reload();
-        
+
 
       },
 
     });
 
 	}
-	
+
      function accept_gig(gig_apply_id,gig_id)
      {
        var formData= new FormData();
@@ -430,11 +430,11 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
     formData.append('gig_id',gig_id);
 
 
-   
- 
+
+
     formData.append("accept_gig","accept_gig");
-      
-     
+
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -442,22 +442,22 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
       type:"POST",
       data:formData,
       success:function(data,status){
-         
+
          swal({
   title: "You accept this gig offer",
- 
+
   icon: "success",
-  
- 
+
+
 })
 .then((isConfrim) => {
   if (isConfrim) {
      location.reload();
-  } 
+  }
 });
-       
-  
-        
+
+
+
 
       },
 
@@ -466,7 +466,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
      function accept_bid(bid_id,job_id)
      {
-         
+
      var formData= new FormData();
     formData.append("bid_id",bid_id);
     formData.append('job_id',job_id);
@@ -476,11 +476,11 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 
 
-   
- 
+
+
     formData.append("accept_bid","accept_bid");
-      
-     
+
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -488,22 +488,22 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
       type:"POST",
       data:formData,
       success:function(data,status){
-         
+
          swal({
   title: "You accept this bid",
- 
+
   icon: "success",
-  
- 
+
+
 })
 .then((isConfrim) => {
   if (isConfrim) {
      location.reload();
-  } 
+  }
 });
-       
-  
-        
+
+
+
 
       },
 
@@ -515,14 +515,14 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
      {
      	var formData= new FormData();
     formData.append('gig_apply_id',gig_apply_id);
-    
 
 
-   
- 
+
+
+
     formData.append("remove_gig","remove_gig");
-      
-     
+
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -530,41 +530,41 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
       type:"POST",
       data:formData,
       success:function(data,status){
-         
+
          swal({
   title: "You removed this gig",
- 
+
   icon: "success",
-  
- 
+
+
 })
 .then((isConfrim) => {
   if (isConfrim) {
      location.reload();
-  } 
+  }
 });
-       
-  
-        
+
+
+
 
       },
 
     });
-     	
+
      }
 
      function remove_bid(bid_id)
      {
      	 var formData= new FormData();
     formData.append('bid_id',bid_id);
-    
 
 
-   
- 
+
+
+
     formData.append("remove_bid","remove_bid");
-      
-     
+
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -572,22 +572,22 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
       type:"POST",
       data:formData,
       success:function(data,status){
-         
+
          swal({
   title: "You removed this bid",
- 
+
   icon: "success",
-  
- 
+
+
 })
 .then((isConfrim) => {
   if (isConfrim) {
      location.reload();
-  } 
+  }
 });
-       
-  
-        
+
+
+
 
       },
 
@@ -599,7 +599,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
-$('#snackbar-user-status label').click(function() { 
+$('#snackbar-user-status label').click(function() {
 	Snackbar.show({
 		text: 'Your status has been changed!',
 		pos: 'bottom-center',
@@ -608,12 +608,11 @@ $('#snackbar-user-status label').click(function() {
 		duration: 3000,
 		textColor: '#fff',
 		backgroundColor: '#383838'
-	}); 
-}); 
+	});
+});
 </script>
 
 
 </body>
 
-<!-- Mirrored from www.vasterad.com/themes/hireo/dashboard-messages.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Mar 2019 13:32:59 GMT -->
 </html>

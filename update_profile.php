@@ -1,15 +1,15 @@
-<?php 
+<?php
  @ob_start();
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-  
-  
- 
+
+
+
   include ("connection.php");
   include("page_content/header.php");
   if($user_id == NULL || $user_id =="")
 {
-   header("location:login.php"); 
-}  
+   header("location:login.php");
+}
 $sql = "SELECT * from user where id = $user_id";
 $res = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($res);
@@ -43,7 +43,7 @@ $password = $row['password'];
 					</span>
 					<span class="trigger-title">Dashboard Navigation</span>
 				</a>
-				
+
 				<!-- Navigation -->
 				<div class="dashboard-nav">
 					<div class="dashboard-nav-inner">
@@ -59,13 +59,13 @@ $password = $row['password'];
 
 							<li ><a href="manage_gig.php"><i class="icon-material-outline-question-answer"></i> Manage Gig </a></li>
 						</ul>
-						
-						
+
+
 						<ul data-submenu-title="Account">
 							<li class="active"><a href="update_profile"><i class="icon-material-outline-settings"></i> Update Profile</a></li>
 							<li><a href="logout.php"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
 						</ul>
-						
+
 					</div>
 				</div>
 				<!-- Navigation / End -->
@@ -80,15 +80,15 @@ $password = $row['password'];
 	================================================== -->
 	<div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
-			
+
 			<!-- Dashboard Headline -->
 			<div class="dashboard-headline">
 				<h3>Settings</h3>
 
 				<!-- Breadcrumbs -->
-				
+
 			</div>
-	
+
 			<!-- Row -->
 			<div class="row">
 
@@ -108,7 +108,7 @@ $password = $row['password'];
 
 			<div class="login-register-page">
 				<!-- Welcome Text -->
-				
+
 
 				<!-- Account Type -->
 				<!-- <div class="account-type">
@@ -122,16 +122,16 @@ $password = $row['password'];
 						<label for="employer-radio" class="ripple-effect-dark"><i class="icon-material-outline-business-center"></i> Employer</label>
 					</div>
 				</div> -->
-					
+
 				<!-- Form -->
 				<form method="post" id="register-account-form">
 					<div class="input-with-icon-left">
 						<i class="icon-material-baseline-mail-outline"></i>
 						<input type="text" class="input-text with-border" name="emailaddress-register" value="<?php echo $name ?>" id="name" placeholder="Full Name" required/>
-					</div> 
+					</div>
 
 					<div class="input-with-icon-left">
-						
+
 						<select id="city" name="city" class="form-control" >
                   <option>Select City </option>
                   <option value="dhaka">Dhaka </option>
@@ -141,7 +141,7 @@ $password = $row['password'];
                   <option value="barishal">Barishal </option>
                 </select>
 					</div>
-         
+
 
 					<div class="input-with-icon-left">
 						<i class="icon-material-baseline-mail-outline"></i>
@@ -161,10 +161,10 @@ $password = $row['password'];
 						<input type="password" class="input-text with-border" name="password-repeat-register" id="r_password" placeholder="Repeat Password" required/>
 					</div>
 				</form>
-				
+
 				<!-- Button -->
-			
-				
+
+
 				<!-- Social Login -->
 				<!-- <div class="social-login-separator"><span>or</span></div>
 				<div class="social-login-buttons">
@@ -181,11 +181,11 @@ $password = $row['password'];
 				</div>
 
 				<!-- Dashboard Box -->
-			
+
 
 				<!-- Dashboard Box -->
-				
-				
+
+
 				<!-- Button -->
 				<div class="col-xl-12">
 					<button onclick="save_change()" class="button ripple-effect big margin-top-30">Save Changes</button>
@@ -196,7 +196,7 @@ $password = $row['password'];
 
 			<!-- Footer -->
 			<div class="dashboard-footer-spacer"></div>
-		
+
 			<!-- Footer / End -->
 
 		</div>
@@ -230,15 +230,15 @@ $password = $row['password'];
     function save_change()
     {
         alert("Profile Update successfully");
-         window.location.href = "dashboard.php";   
+         window.location.href = "dashboard.php";
     }
-    
+
 </script>
 
 <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 <script>
 // Snackbar for user status switcher
-$('#snackbar-user-status label').click(function() { 
+$('#snackbar-user-status label').click(function() {
 	Snackbar.show({
 		text: 'Your status has been changed!',
 		pos: 'bottom-center',
@@ -247,8 +247,8 @@ $('#snackbar-user-status label').click(function() {
 		duration: 3000,
 		textColor: '#fff',
 		backgroundColor: '#383838'
-	}); 
-}); 
+	});
+});
 </script>
 
 <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
@@ -304,7 +304,7 @@ $('#snackbar-user-status label').click(function() {
 	            	},
 				}],
 				xAxes: [{
-					scaleLabel: { display: false },  
+					scaleLabel: { display: false },
 					gridLines:  { display: false },
 				}],
 			},
@@ -340,7 +340,7 @@ $('#snackbar-user-status label').click(function() {
 		 var autocomplete = new google.maps.places.Autocomplete(input, options);
 
 		if ($('.submit-field')[0]) {
-		    setTimeout(function(){ 
+		    setTimeout(function(){
 		        $(".pac-container").prependTo("#autocomplete-container");
 		    }, 300);
 		}
@@ -353,5 +353,5 @@ $('#snackbar-user-status label').click(function() {
 
 </body>
 
-<!-- Mirrored from www.vasterad.com/themes/hireo/dashboard-settings.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Mar 2019 13:33:01 GMT -->
+
 </html>

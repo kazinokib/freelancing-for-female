@@ -5,7 +5,7 @@ $user_logged_in = isset($_SESSION['user_id']);
 <!doctype html>
 <html lang="en">
 
-<!-- Mirrored from www.vasterad.com/themes/hireo/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Mar 2019 13:31:39 GMT -->
+
 <head>
 
 <!-- Basic Page Needs
@@ -877,5 +877,5 @@ $('#snackbar-user-status label').click(function() {
 
 </body>
 
-<!-- Mirrored from www.vasterad.com/themes/hireo/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Mar 2019 13:31:49 GMT -->
+
 </html>
