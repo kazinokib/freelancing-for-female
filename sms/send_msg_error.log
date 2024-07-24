@@ -1,0 +1,1 @@
+[19-Mar-2019 16:54:00 Asia/Dhaka] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/pinkishb/public_html/bdapps/fff/sms/send_msg.php on line 27

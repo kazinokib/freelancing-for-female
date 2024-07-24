@@ -1,0 +1,1 @@
+{"message":"01844519344","ussdOperation":"mo-cont","requestId":"071904231500058437","sessionId":"071904231459457992","encoding":"0","applicationId":"APP_013013","sourceAddress":"tel:B%3C4ZyPUKdGRZf6NUGez94vNHyjyu3Bs+QRx245g9AEBXdETFQ0HIwjXBpTXB90xpZcrIwiUkw3DZn7mkB1s+1lC3w==","version":"1.0"}
