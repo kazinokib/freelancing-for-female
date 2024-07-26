@@ -1,0 +1,24 @@
+[26-Jul-2024 15:21:00 Asia/Dhaka] Gig post successfully inserted for user ID: 10
+[26-Jul-2024 15:25:28 Asia/Dhaka] PHP Fatal error:  Uncaught SMSServiceException: IP address, which the request originates from, is not listed withing the allowed-host-address list. in D:\Code\laragon\www\fff_update\sms\libs\bdapps_cass_sdk.php:167
+Stack trace:
+#0 D:\Code\laragon\www\fff_update\sms\libs\bdapps_cass_sdk.php(152): SMSSender->handleResponse(Object(stdClass))
+#1 D:\Code\laragon\www\fff_update\backend\register.php(280): SMSSender->sms('Client name:Aug...', 'tel:A#3B439skM+...')
+#2 {main}
+  thrown in D:\Code\laragon\www\fff_update\sms\libs\bdapps_cass_sdk.php on line 167
+[26-Jul-2024 15:25:30 Asia/Dhaka] PHP Fatal error:  Uncaught SMSServiceException: IP address, which the request originates from, is not listed withing the allowed-host-address list. in D:\Code\laragon\www\fff_update\sms\libs\bdapps_cass_sdk.php:167
+Stack trace:
+#0 D:\Code\laragon\www\fff_update\sms\libs\bdapps_cass_sdk.php(152): SMSSender->handleResponse(Object(stdClass))
+#1 D:\Code\laragon\www\fff_update\backend\register.php(280): SMSSender->sms('Client name:Aug...', 'tel:A#3B439skM+...')
+#2 {main}
+  thrown in D:\Code\laragon\www\fff_update\sms\libs\bdapps_cass_sdk.php on line 167
+[26-Jul-2024 15:33:10 Asia/Dhaka] Gig post successfully inserted for user ID: 6
+[26-Jul-2024 15:36:32 Asia/Dhaka] Review Client - Rating: 5, Comment: Test Review, Client ID: 10, Freelancer ID: 6, Gig ID: 2, Date: 26-07-2024
+[26-Jul-2024 15:36:32 Asia/Dhaka] Review Client - Review successfully added for Client ID: 10 by Freelancer ID: 6
+[26-Jul-2024 15:36:50 Asia/Dhaka] Review Freelancer - Rating: 5, Comment: The work was good, Client ID: 10, Freelancer ID: 6, Gig ID: 2, Date: 26-07-2024
+[26-Jul-2024 15:36:50 Asia/Dhaka] Review Freelancer - Review successfully added for Freelancer ID: 6 by Client ID: 10
+[26-Jul-2024 15:38:40 Asia/Dhaka] PHP Fatal error:  Uncaught SMSServiceException: IP address, which the request originates from, is not listed withing the allowed-host-address list. in D:\Code\laragon\www\fff_update\sms\libs\bdapps_cass_sdk.php:167
+Stack trace:
+#0 D:\Code\laragon\www\fff_update\sms\libs\bdapps_cass_sdk.php(152): SMSSender->handleResponse(Object(stdClass))
+#1 D:\Code\laragon\www\fff_update\backend\register.php(280): SMSSender->sms('Client name:Aug...', 'tel:A#3B439skM+...')
+#2 {main}
+  thrown in D:\Code\laragon\www\fff_update\sms\libs\bdapps_cass_sdk.php on line 167

@@ -124,10 +124,12 @@ if(isset($_POST['update_gig']))
 
 }
 
+
+
 if(isset($_POST['gig_post']))
 {
     date_default_timezone_set('Asia/Dhaka');
-           $date = date('d-m-Y');
+    $date = date('d-m-Y');
 
     $gig_title = $_POST['gig_title'];
     $gig_category = $_POST['gig_category'];
@@ -136,26 +138,53 @@ if(isset($_POST['gig_post']))
     $duration = $_POST['duration'];
     $gig_description = $_POST['gig_description'];
     $city  = $_POST["city"];
-     $name    = $_FILES['file']['name'];
+    $name    = $_FILES['file']['name'];
 
-        $user_id = $_POST['user_id'];
-      file_put_contents("test.txt",$duration." ".$user_id);
+    $user_id = $_POST['user_id'];
+    file_put_contents("test.txt", $duration." ".$user_id);
 
-    $dst="image/".$name;
-    $dst2="../image/".$name;
+    $dst = "image/".$name;
+    $dst2 = "../image/".$name;
 
-     copy($_FILES["file"]["tmp_name"],$dst2);
+    // Check for file upload errors
+    if ($_FILES["file"]["error"] != UPLOAD_ERR_OK) {
+        error_log("File upload error: " . $_FILES["file"]["error"]);
+        die("File upload error.");
+    }
 
+    if (!copy($_FILES["file"]["tmp_name"], $dst2)) {
+        error_log("Failed to copy uploaded file to destination: $dst2");
+        die("Failed to upload file.");
+    }
 
+    // Assuming $conn is your database connection
+    if (!$conn) {
+        error_log("Database connection error: " . mysqli_connect_error());
+        die("Database connection error.");
+    }
 
+    // Use prepared statements to prevent SQL syntax errors and SQL injection
+    $stmt = $conn->prepare("INSERT INTO gig (user_id, gig_title, gig_category, base_price_min, base_price_max, gig_description, city, gig_file, gig_date, gig_duration)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    if (!$stmt) {
+        error_log("Prepare statement error: " . $conn->error);
+        die("Prepare statement error.");
+    }
 
-     $sql = "INSERT into gig(user_id,gig_title,gig_category,base_price_min,base_price_max,gig_description,city,gig_file,gig_date,gig_duration) Values ($user_id,'$gig_title','$gig_category',$base_price_min,$base_price_max,'$gig_description','$city','$dst','$date',$duration)";
-     mysqli_query($conn,$sql);
+    $stmt->bind_param("issddsssds", $user_id, $gig_title, $gig_category, $base_price_min, $base_price_max, $gig_description, $city, $dst, $date, $duration);
+    if (!$stmt->execute()) {
+        error_log("Execute statement error: " . $stmt->error);
+        die("Execute statement error.");
+    }
 
+    // Log success message
+    error_log("Gig post successfully inserted for user ID: $user_id");
 
-
-
+    $stmt->close();
 }
+
+
+
 
 if(isset($_POST['job_update']))
 {

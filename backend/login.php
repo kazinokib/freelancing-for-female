@@ -8,17 +8,17 @@ extract($_POST);
 
 if(isset($_POST['login']))
 {
-    
-    $mobile= $_POST['mobile'];
+
+    $email= $_POST['email'];
     $password = $_POST['password'];
 
 
-    $sql = "SELECT * from user where mobile_number = '$mobile' and password = '$password' ";
+    $sql = "SELECT * from user where email = '$email' and password = '$password' ";
     $res = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($res);
     $id = $row['id'];
     $verification = $row['account_verified'];
-    
+
 
     $num_rows = mysqli_num_rows($res);
 
@@ -36,14 +36,14 @@ if(isset($_POST['login']))
         else
         {
             echo "otp";
-             $_SESSION['mobile_number'] = $mobile;
+             $_SESSION['email'] = $email;
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 }
 
 

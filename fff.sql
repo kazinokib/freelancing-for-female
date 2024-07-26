@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 24, 2024 at 05:46 PM
+-- Generation Time: Jul 26, 2024 at 10:36 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.18
 
@@ -44,14 +44,6 @@ CREATE TABLE `bid_details` (
   `date` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
---
--- Dumping data for table `bid_details`
---
-
-INSERT INTO `bid_details` (`bid_id`, `job_id`, `user_id`, `job_given_id`, `bidding_price`, `work_duration`, `bidding_message`, `status`, `show_notification`, `bid_accepted`, `job_done_freelancer`, `job_done_client`, `date`) VALUES
-(4, 3, 3, 6, 1300, 3, 'I can do your job', 1, 1, 1, 1, 1, '22-04-2019'),
-(5, 4, 3, 6, 750, 1, 'testt', 0, 0, 0, 0, 0, '24-07-2024');
-
 -- --------------------------------------------------------
 
 --
@@ -65,13 +57,6 @@ CREATE TABLE `chat` (
   `work_id` int NOT NULL,
   `msg` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Dumping data for table `chat`
---
-
-INSERT INTO `chat` (`chat_id`, `sender_id`, `reciever_id`, `work_id`, `msg`) VALUES
-(1, 3, 9, 0, 'hello');
 
 -- --------------------------------------------------------
 
@@ -101,7 +86,7 @@ CREATE TABLE `gig` (
   `gig_description` text NOT NULL,
   `gig_duration` int NOT NULL,
   `gig_file` text NOT NULL,
-  `accepted_gig_apply_id` int NOT NULL,
+  `accepted_gig_apply_id` int DEFAULT NULL,
   `gig_date` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -145,13 +130,6 @@ CREATE TABLE `job` (
   `job_status` tinyint(1) NOT NULL DEFAULT '0',
   `accepted_bid_id` int NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
-
---
--- Dumping data for table `job`
---
-
-INSERT INTO `job` (`id`, `user_id`, `job_title`, `base_price_min`, `base_price_max`, `job_category`, `city`, `job_description`, `job_file`, `job_duration`, `job_date`, `job_status`, `accepted_bid_id`) VALUES
-(4, 6, 'Nakhsi Katha', 500, 1000, 'Textile', 'Chittagong', 'I need 10 pcs nakshi katha', 'image/1920544795 (1).jpg', 10, '23-04-2019', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -211,33 +189,13 @@ CREATE TABLE `rating` (
   `rating_id` int NOT NULL,
   `rating_from` int NOT NULL,
   `rating_to` int NOT NULL,
-  `job_id` int NOT NULL,
-  `gig_id` int NOT NULL,
+  `job_id` int DEFAULT NULL,
+  `gig_id` int DEFAULT NULL,
   `given_rating` int NOT NULL,
   `given_review` text NOT NULL,
-  `rated_as` text NOT NULL,
+  `rated_as` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
   `date` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Dumping data for table `rating`
---
-
-INSERT INTO `rating` (`rating_id`, `rating_from`, `rating_to`, `job_id`, `gig_id`, `given_rating`, `given_review`, `rated_as`, `date`) VALUES
-(1, 9, 3, 1, 0, 5, 'asa', '', '15-03-2019'),
-(2, 9, 3, 1, 0, 5, 'asas', '', '15-03-2019'),
-(3, 9, 3, 1, 0, 5, 'asas', '', '15-03-2019'),
-(4, 3, 9, 1, 0, 5, 'asas', '', '15-03-2019'),
-(5, 9, 3, 1, 0, 5, 'asas', '', '15-03-2019'),
-(6, 3, 9, 1, 0, 5, 'asas', '', '15-03-2019'),
-(7, 3, 9, 1, 0, 4, 'asas', '', '15-03-2019'),
-(8, 3, 9, 1, 0, 5, 'asas', '', '15-03-2019'),
-(9, 9, 3, 0, 1, 5, 'asas', '', '15-03-2019'),
-(10, 3, 9, 0, 1, 4, 'asa', '', '15-03-2019'),
-(11, 3, 6, 3, 0, 5, 'He is good client', '', '22-04-2019'),
-(12, 6, 3, 3, 0, 5, 'nice work', '', '22-04-2019'),
-(13, 3, 6, 0, 3, 5, 'aaa', '', '22-04-2019'),
-(14, 6, 3, 0, 3, 4, 'well done', '', '22-04-2019');
 
 -- --------------------------------------------------------
 
@@ -248,8 +206,8 @@ INSERT INTO `rating` (`rating_id`, `rating_from`, `rating_to`, `job_id`, `gig_id
 CREATE TABLE `review` (
   `review_id` int NOT NULL,
   `user_id` int NOT NULL,
-  `job_id` int NOT NULL,
-  `gig_id` int NOT NULL,
+  `job_id` int DEFAULT NULL,
+  `gig_id` int DEFAULT NULL,
   `given_rating` int NOT NULL,
   `rated_as` text NOT NULL,
   `date` text NOT NULL
@@ -306,9 +264,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `city`, `email`, `mobile_number`, `password`, `mask`, `otp`, `rating`, `joining_date`, `account_verified`) VALUES
-(3, 'XYZ', 'chittagong', '', '01845318609', '1234', '', 2078, 0, '2019-04-22 10:38:17', 1),
-(6, 'Mir Reaz Uddin', 'Select City', '', '01815528228', '12345', '', 8952, 0, '2019-04-22 11:25:14', 1),
-(7, 'zzxc', '', '', '', '1234', '', 0, 0, '2019-04-22 13:17:17', 0),
+(3, 'XYZ', 'chittagong', 'robi@gmail.com', '01845318601', '1234', '', 2078, 0, '2019-04-22 10:38:17', 1),
+(6, 'Mir Reaz Uddin', 'Select City', 'nokibevon7@gmail.com', '01815528228', '12345', '', 8952, 0, '2019-04-22 11:25:14', 1),
+(7, 'zzxc', '', 'mirreaz@gmail.com', '', '1234', '', 0, 0, '2019-04-22 13:17:17', 0),
 (10, 'August Turner', 'manitoba', 'kazinokib7@gmail.com', '01845318609', '1234', NULL, 5557, NULL, '2024-07-24 16:24:56', 1);
 
 -- --------------------------------------------------------
@@ -412,7 +370,7 @@ ALTER TABLE `ussd_user`
 -- AUTO_INCREMENT for table `bid_details`
 --
 ALTER TABLE `bid_details`
-  MODIFY `bid_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `bid_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `chat`
@@ -424,19 +382,19 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `gig`
 --
 ALTER TABLE `gig`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `gig_apply`
 --
 ALTER TABLE `gig_apply`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `job_news_update`
@@ -454,7 +412,7 @@ ALTER TABLE `job_post`
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `rating_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `rating_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `review`

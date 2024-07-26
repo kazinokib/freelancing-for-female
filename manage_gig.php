@@ -201,7 +201,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
                                      $gig_id = $row_manage_gig_accepted_client['gig_id'];
                                      $freelancer_id = $row_manage_gig_accepted_client['user_id'];
                                      $client_id = $row_manage_gig_accepted_client['employee_id'];
-                                     $proposed_price = $row_manage_gig_accepted['proposed_rate'];
+                                     $proposed_price = $row_manage_gig_accepted_client['proposed_rate'];
 
                                       $sql = "SELECT * from gig where id = $gig_id";
                                       $res = mysqli_query($conn,$sql);
@@ -550,7 +550,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
       success:function(data,status){
 
          swal({
-  title: "You accept this gig offer",
+  title: "Review Done",
 
   icon: "success",
 
@@ -598,7 +598,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
       success:function(data,status){
 
          swal({
-  title: "You accept this gig offer",
+  title: "Review Done",
 
   icon: "success",
 

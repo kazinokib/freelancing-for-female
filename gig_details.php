@@ -1,70 +1,65 @@
 <?php
- @ob_start();
-if(session_status()!=PHP_SESSION_ACTIVE) session_start();
+@ob_start();
+if(session_status() != PHP_SESSION_ACTIVE) session_start();
 
+include("connection.php");
+include("page_content/header.php");
 
-
-  include ("connection.php");
-  include("page_content/header.php");
-  if($user_id == NULL || $user_id =="")
-{
-   header("location:login.php");
+if ($user_id == NULL || $user_id == "") {
+    header("location:login.php");
+    exit();
 }
-  $gig_id = $_REQUEST['gig_id'];
-  $sql = "SELECT * from gig where id = $gig_id";
-  $res = mysqli_query($conn,$sql);
-  $row = mysqli_fetch_array($res);
-  $gig_given_id = $row['user_id'];
-  $gig_title = $row['gig_title'];
-  $base_price_min = $row['base_price_min'];
-  $base_price_max = $row['base_price_max'];
-  $gig_description = $row['gig_description'];
-  $gig_duration = $row['gig_duration'];
-  $gig_date = $row['gig_date'];
-  $gig_file = $row['gig_file'];
 
-  date_default_timezone_set('Asia/Dhaka');
-           $date = date('d-m-Y');
-        $currentdate= strtotime( $date );
-    $timefromdb = strtotime( $gig_date );
-    $daysleft = ($currentdate - $timefromdb)/(60 * 60 * 24);
+$gig_id = $_REQUEST['gig_id'];
+$sql = "SELECT * FROM gig WHERE id = $gig_id";
+$res = mysqli_query($conn, $sql);
 
-    $remaining_day= $gig_duration - $daysleft;
+if ($res && mysqli_num_rows($res) > 0) {
+    $row = mysqli_fetch_array($res);
+    $gig_given_id = $row['user_id'];
+    $gig_title = $row['gig_title'];
+    $base_price_min = $row['base_price_min'];
+    $base_price_max = $row['base_price_max'];
+    $gig_description = $row['gig_description'];
+    $gig_duration = $row['gig_duration'];
+    $gig_date = $row['gig_date'];
+    $gig_file = $row['gig_file'];
 
+    date_default_timezone_set('Asia/Dhaka');
+    $date = date('d-m-Y');
+    $currentdate = strtotime($date);
+    $timefromdb = strtotime($gig_date);
+    $daysleft = ($currentdate - $timefromdb) / (60 * 60 * 24);
 
+    $remaining_day = $gig_duration - $daysleft;
 
+    $sql2 = "SELECT * FROM user WHERE id = $gig_given_id";
+    $res2 = mysqli_query($conn, $sql2);
 
+    if ($res2 && mysqli_num_rows($res2) > 0) {
+        $row2 = mysqli_fetch_array($res2);
+        $name = $row2['name'];
+    }
 
-  $sql2 = "select * from user where id = $gig_given_id";
-  $res2 = mysqli_query($conn,$sql2);
-  $row2 = mysqli_fetch_array($res2);
-  $name = $row2['name'];
+    $sql3 = "SELECT * FROM gig_apply WHERE employee_id = $user_id AND gig_id = $gig_id";
+    $res3 = mysqli_query($conn, $sql3);
+    $previously_bid = mysqli_num_rows($res3);
 
+    $sql4 = "SELECT * FROM rating WHERE rating_to = $gig_given_id";
+    $res4 = mysqli_query($conn, $sql4);
+    $rating = 0;
 
-     $sql3 = "SELECT * from gig_apply where employee_id =$user_id and gig_id = $gig_id";
-  $res3 = mysqli_query($conn,$sql3);
-  $previously_bid = mysqli_num_rows($res3);
-
-   $sql3 = "SELECT * from rating where rating_to = $gig_given_id ";
-
-  $res3 = mysqli_query($conn,$sql3);
-  $rating =0;
-
-  while($row3 = mysqli_fetch_array($res3))
-  {
-      $rating= $rating+$row3["given_rating"];
-  }
-
-
-  $rating =  $rating/mysqli_num_rows($res3);
-  $rating = round($rating,1);
-
-
-  $res4 = mysqli_query($conn,$sql3);
-
-
-
+    $rating_count = mysqli_num_rows($res4);
+    if ($rating_count > 0) {
+        while ($row4 = mysqli_fetch_array($res4)) {
+            $rating += $row4["given_rating"];
+        }
+        $rating = $rating / $rating_count;
+        $rating = round($rating, 1);
+    }
+}
 ?>
+
 
 <div class="clearfix"></div>
 <!-- Header Container / End -->

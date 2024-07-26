@@ -1,17 +1,17 @@
 <?php
 @ob_start();
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-  
-  
- 
+
+
+
   include ("connection.php");
   include("page_content/header.php");
   if($user_id == NULL || $user_id =="")
 {
-   header("location:login.php"); 
-}  
+   header("location:login.php");
+}
 
- 
+
 
 ?>
 	<div class="clearfix"></div>
@@ -83,15 +83,28 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 									<div class="col-xl-4">
 										<div class="submit-field">
-											<h5>City</h5>
+											<h5>Province</h5>
 											<div class="input-with-icon">
 												<div id="autocomplete-container">
-													<input id="autocomplete-input" class="with-border city" type="text" placeholder="Type Address">
+													<select id="autocomplete-input" name="city" class="form-control city" required>
+														<option value="">Select Province</option>
+														<option value="ontario">Ontario</option>
+														<option value="quebec">Quebec</option>
+														<option value="nova_scotia">Nova Scotia</option>
+														<option value="new_brunswick">New Brunswick</option>
+														<option value="manitoba">Manitoba</option>
+														<option value="british_columbia">British Columbia</option>
+														<option value="prince_edward_island">Prince Edward Island</option>
+														<option value="saskatchewan">Saskatchewan</option>
+														<option value="alberta">Alberta</option>
+														<option value="newfoundland_and_labrador">Newfoundland and Labrador</option>
+													</select>
 												</div>
 												<i class="icon-material-outline-location-on"></i>
 											</div>
 										</div>
 									</div>
+
 
 									<div class="col-xl-4">
 										<div class="submit-field">
@@ -123,7 +136,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 														<i class="currency">Days</i>
 													</div>
 												</div>
-												
+
 											</div>
 										</div>
 									</div>
@@ -161,7 +174,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 					</div>
 
 					<div class="col-xl-12">
-						<a href="#" onclick="gig_post()" class="button ripple-effect big margin-top-30"><i class="icon-feather-plus"></i> Post a Job</a>
+						<a href="#" onclick="gig_post()" class="button ripple-effect big margin-top-30"><i class="icon-feather-plus"></i> Create a gig</a>
 					</div>
 
 				</div>
@@ -170,7 +183,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 				<!-- Footer -->
 				<div class="dashboard-footer-spacer"></div>
 				<div class="small-footer margin-top-15">
-					
+
 					<ul class="footer-social-links">
 						<li>
 							<a href="#" title="Facebook" data-tippy-placement="top">
@@ -216,7 +229,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script type="text/javascript">
-  	
+
   	function gig_post()
   	{
     var gig_title = $("#gig_title").val();
@@ -226,9 +239,9 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	var gig_category = $("#gig_category").val();
 	var gig_description = $("#gig_description").val();
 	var duration = $("#duration").val();
-    
-    
-	
+
+
+
      var formData= new FormData();
     formData.append('gig_title',gig_title);
     formData.append("city",city);
@@ -240,7 +253,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
        formData.append("user_id",<?php echo $user_id ?>);
     formData.append("gig_post","gig_post");
        formData.append('file',$('#upload')[0].files[0]);
-     
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -249,20 +262,20 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
       data:formData,
       success:function(data,status){
 
-        
+
          swal({
   title: "Your gig is successfully created",
- 
+
   icon: "success",
-  
- 
+
+
 })
 .then((isConfrim) => {
   if (isConfrim) {
       window.location.href = 'main_page_gig.php?category=all&location=all';
-  } 
+  }
 });
-        
+
 
       },
 
@@ -283,12 +296,12 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	<script src="js/magnific-popup.min.js"></script>
 	<script src="js/slick.min.js"></script>
 	<script src="js/custom.js"></script>
-	
+
 
 	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 	<script>
 // Snackbar for user status switcher
-$('#snackbar-user-status label').click(function() { 
+$('#snackbar-user-status label').click(function() {
 	Snackbar.show({
 		text: 'Your status has been changed!',
 		pos: 'bottom-center',
@@ -297,8 +310,8 @@ $('#snackbar-user-status label').click(function() {
 		duration: 3000,
 		textColor: '#fff',
 		backgroundColor: '#383838'
-	}); 
-}); 
+	});
+});
 </script>
 
 <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
@@ -354,7 +367,7 @@ $('#snackbar-user-status label').click(function() {
 					},
 				}],
 				xAxes: [{
-					scaleLabel: { display: false },  
+					scaleLabel: { display: false },
 					gridLines:  { display: false },
 				}],
 			},
@@ -380,21 +393,7 @@ $('#snackbar-user-status label').click(function() {
 
 <!-- Google Autocomplete -->
 <script>
-	function initAutocomplete() {
-		var options = {
-			types: ['(cities)'],
-		  // componentRestrictions: {country: "us"}
-		};
 
-		var input = document.getElementById('autocomplete-input');
-		var autocomplete = new google.maps.places.Autocomplete(input, options);
-
-		if ($('.submit-field')[0]) {
-			setTimeout(function(){ 
-				$(".pac-container").prependTo("#autocomplete-container");
-			}, 300);
-		}
-	}
 </script>
 
 <!-- Google API & Maps -->

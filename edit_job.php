@@ -1,15 +1,15 @@
 <?php
 @ob_start();
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-  
-  
- 
+
+
+
   include ("connection.php");
   include("page_content/header.php");
   if($user_id == NULL || $user_id =="")
 {
-   header("location:login.php"); 
-}  
+   header("location:login.php");
+}
 
 $job_id =$_REQUEST['job_id'];
 $sql = "SELECT * from job where id = $job_id";
@@ -85,16 +85,29 @@ $row = mysqli_fetch_array($res);
 									</div>
 
 									<div class="col-xl-4">
-										<div class="submit-field">
-											<h5>City</h5>
-											<div class="input-with-icon">
-												<div id="autocomplete-container">
-													<input id="autocomplete-input" class="with-border city" type="text" placeholder="Type Address"  value ="<?php echo $row["city"] ?>">
-												</div>
-												<i class="icon-material-outline-location-on"></i>
+									<div class="submit-field">
+										<h5>Province</h5>
+										<div class="input-with-icon">
+											<div id="autocomplete-container">
+												<select id="autocomplete-input" name="city" class="form-control city" required>
+													<option value="">Select Province</option>
+													<option value="ontario" <?php if($row["city"] == "ontario") echo "selected"; ?>>Ontario</option>
+													<option value="quebec" <?php if($row["city"] == "quebec") echo "selected"; ?>>Quebec</option>
+													<option value="nova_scotia" <?php if($row["city"] == "nova_scotia") echo "selected"; ?>>Nova Scotia</option>
+													<option value="new_brunswick" <?php if($row["city"] == "new_brunswick") echo "selected"; ?>>New Brunswick</option>
+													<option value="manitoba" <?php if($row["city"] == "manitoba") echo "selected"; ?>>Manitoba</option>
+													<option value="british_columbia" <?php if($row["city"] == "british_columbia") echo "selected"; ?>>British Columbia</option>
+													<option value="prince_edward_island" <?php if($row["city"] == "prince_edward_island") echo "selected"; ?>>Prince Edward Island</option>
+													<option value="saskatchewan" <?php if($row["city"] == "saskatchewan") echo "selected"; ?>>Saskatchewan</option>
+													<option value="alberta" <?php if($row["city"] == "alberta") echo "selected"; ?>>Alberta</option>
+													<option value="newfoundland_and_labrador" <?php if($row["city"] == "newfoundland_and_labrador") echo "selected"; ?>>Newfoundland and Labrador</option>
+												</select>
 											</div>
+											<i class="icon-material-outline-location-on"></i>
 										</div>
 									</div>
+								</div>
+
 
 									<div class="col-xl-4">
 										<div class="submit-field">
@@ -126,7 +139,7 @@ $row = mysqli_fetch_array($res);
 														<i class="currency">Day</i>
 													</div>
 												</div>
-												
+
 											</div>
 										</div>
 									</div>
@@ -173,7 +186,7 @@ $row = mysqli_fetch_array($res);
 				<!-- Footer -->
 				<div class="dashboard-footer-spacer"></div>
 				<div class="small-footer margin-top-15">
-					
+
 					<ul class="footer-social-links">
 						<li>
 							<a href="#" title="Facebook" data-tippy-placement="top">
@@ -217,8 +230,8 @@ $row = mysqli_fetch_array($res);
 	================================================== -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script type="text/javascript">
-  
-  
+
+
   function update_job(job_id)
   {
       var job_title = $("#job_title").val();
@@ -228,10 +241,10 @@ $row = mysqli_fetch_array($res);
 	var job_category = $("#job_category").val();
 	var job_description = $("#job_description").val();
 	var job_duration = $("#job_duration").val();
-	
+
     //alert(job_duration);
     //alert(job_title+city+base_price_min+base_price_max+job_category+job_description);
-	
+
      var formData= new FormData();
     formData.append('job_title',job_title);
     formData.append("city",city);
@@ -241,12 +254,12 @@ $row = mysqli_fetch_array($res);
     formData.append("job_description",job_description);
     formData.append("job_duration",job_duration);
       formData.append("user_id",<?php echo $user_id ?>);
-      
+
     formData.append("job_update","job_update");
     formData.append("job_id",job_id);
-    
+
        formData.append('file',$('#upload')[0].files[0]);
-     
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -257,23 +270,23 @@ $row = mysqli_fetch_array($res);
 
          swal({
   title: "Your job is successfully updated,
- 
+
   icon: "success",
-  
- 
+
+
 })
 .then((isConfrim) => {
   if (isConfrim) {
       window.location.href = 'main_page_job.php?category=all&location=all';
-  } 
+  }
 });
-        
+
 
       },
 
     });
   }
-  	
+
   	function job_post()
   	{
     var job_title = $("#job_title").val();
@@ -285,7 +298,7 @@ $row = mysqli_fetch_array($res);
 	var job_duration = $("#job_duration").val();
     //alert(job_duration);
     //alert(job_title+city+base_price_min+base_price_max+job_category+job_description);
-	
+
      var formData= new FormData();
     formData.append('job_title',job_title);
     formData.append("city",city);
@@ -297,7 +310,7 @@ $row = mysqli_fetch_array($res);
       formData.append("user_id",<?php echo $user_id ?>);
     formData.append("job_post","job_post");
        formData.append('file',$('#upload')[0].files[0]);
-     
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -308,17 +321,17 @@ $row = mysqli_fetch_array($res);
 
          swal({
   title: "Your job is successfully posted",
- 
+
   icon: "success",
-  
- 
+
+
 })
 .then((isConfrim) => {
   if (isConfrim) {
       window.location.href = 'main_page_job.php?category=all&location=all';
-  } 
+  }
 });
-        
+
 
       },
 
@@ -339,12 +352,12 @@ $row = mysqli_fetch_array($res);
 	<script src="js/magnific-popup.min.js"></script>
 	<script src="js/slick.min.js"></script>
 	<script src="js/custom.js"></script>
-	
+
 
 	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 	<script>
 // Snackbar for user status switcher
-$('#snackbar-user-status label').click(function() { 
+$('#snackbar-user-status label').click(function() {
 	Snackbar.show({
 		text: 'Your status has been changed!',
 		pos: 'bottom-center',
@@ -353,8 +366,8 @@ $('#snackbar-user-status label').click(function() {
 		duration: 3000,
 		textColor: '#fff',
 		backgroundColor: '#383838'
-	}); 
-}); 
+	});
+});
 </script>
 
 <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
@@ -410,7 +423,7 @@ $('#snackbar-user-status label').click(function() {
 					},
 				}],
 				xAxes: [{
-					scaleLabel: { display: false },  
+					scaleLabel: { display: false },
 					gridLines:  { display: false },
 				}],
 			},
@@ -446,7 +459,7 @@ $('#snackbar-user-status label').click(function() {
 		var autocomplete = new google.maps.places.Autocomplete(input, options);
 
 		if ($('.submit-field')[0]) {
-			setTimeout(function(){ 
+			setTimeout(function(){
 				$(".pac-container").prependTo("#autocomplete-container");
 			}, 300);
 		}

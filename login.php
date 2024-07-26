@@ -109,8 +109,8 @@
 				<!-- Form -->
 
 					<div class="input-with-icon-left">
-						<i class="icon-line-awesome-phone-square"></i>
-						<input type="text" class="input-text with-border" name="mobile" id="mobile" placeholder="Mobile Number" required/>
+						<i class="icon-material-baseline-mail-outline"></i>
+						<input type="text" class="input-text with-border" name="email" id="email" placeholder="Email" required/>
 					</div>
 
 					<div class="input-with-icon-left">
@@ -174,10 +174,10 @@ function resend_otp()
 
 	function login()
 	{
-		var mobile = $("#mobile").val();
+		var email = $("#email").val();
 		var password = $("#password").val();
       var formData= new FormData();
-    formData.append('mobile',mobile);
+    formData.append('email',email);
     formData.append("password",password);
 
 
@@ -196,7 +196,7 @@ function resend_otp()
          var msg=$.trim(data);
          if(msg=="not_ok")
          {
-         	alert("Mobile number and password not match")
+         	alert("Email and password not match")
          }
          else if(msg == "otp")
          {

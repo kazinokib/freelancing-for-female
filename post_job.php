@@ -1,15 +1,15 @@
 <?php
 @ob_start();
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-  
-  
- 
+
+
+
   include ("connection.php");
   include("page_content/header.php");
   if($user_id == NULL || $user_id =="")
 {
-   header("location:login.php"); 
-}  
+   header("location:login.php");
+}
 ?>
 	<div class="clearfix"></div>
 	<!-- Header Container / End -->
@@ -80,10 +80,22 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 									<div class="col-xl-4">
 										<div class="submit-field">
-											<h5>City</h5>
+											<h5>Province</h5>
 											<div class="input-with-icon">
 												<div id="autocomplete-container">
-													<input id="autocomplete-input" class="with-border city" type="text" placeholder="Type Address">
+													<select id="autocomplete-input" name="city" class="form-control city" required>
+														<option value="">Select Province</option>
+														<option value="ontario">Ontario</option>
+														<option value="quebec">Quebec</option>
+														<option value="nova_scotia">Nova Scotia</option>
+														<option value="new_brunswick">New Brunswick</option>
+														<option value="manitoba">Manitoba</option>
+														<option value="british_columbia">British Columbia</option>
+														<option value="prince_edward_island">Prince Edward Island</option>
+														<option value="saskatchewan">Saskatchewan</option>
+														<option value="alberta">Alberta</option>
+														<option value="newfoundland_and_labrador">Newfoundland and Labrador</option>
+													</select>
 												</div>
 												<i class="icon-material-outline-location-on"></i>
 											</div>
@@ -120,7 +132,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 														<i class="currency">Day</i>
 													</div>
 												</div>
-												
+
 											</div>
 										</div>
 									</div>
@@ -167,7 +179,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 				<!-- Footer -->
 				<div class="dashboard-footer-spacer"></div>
 				<div class="small-footer margin-top-15">
-					
+
 					<ul class="footer-social-links">
 						<li>
 							<a href="#" title="Facebook" data-tippy-placement="top">
@@ -211,7 +223,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	================================================== -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script type="text/javascript">
-  	
+
   	function job_post()
   	{
     var job_title = $("#job_title").val();
@@ -223,7 +235,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	var job_duration = $("#job_duration").val();
     //alert(job_duration);
     //alert(job_title+city+base_price_min+base_price_max+job_category+job_description);
-	
+
      var formData= new FormData();
     formData.append('job_title',job_title);
     formData.append("city",city);
@@ -235,7 +247,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
       formData.append("user_id",<?php echo $user_id ?>);
     formData.append("job_post","job_post");
        formData.append('file',$('#upload')[0].files[0]);
-     
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -246,17 +258,17 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
          swal({
   title: "Your job is successfully posted",
- 
+
   icon: "success",
-  
- 
+
+
 })
 .then((isConfrim) => {
   if (isConfrim) {
       window.location.href = 'main_page_job.php?category=all&location=all';
-  } 
+  }
 });
-        
+
 
       },
 
@@ -277,12 +289,12 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	<script src="js/magnific-popup.min.js"></script>
 	<script src="js/slick.min.js"></script>
 	<script src="js/custom.js"></script>
-	
+
 
 	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 	<script>
 // Snackbar for user status switcher
-$('#snackbar-user-status label').click(function() { 
+$('#snackbar-user-status label').click(function() {
 	Snackbar.show({
 		text: 'Your status has been changed!',
 		pos: 'bottom-center',
@@ -291,8 +303,8 @@ $('#snackbar-user-status label').click(function() {
 		duration: 3000,
 		textColor: '#fff',
 		backgroundColor: '#383838'
-	}); 
-}); 
+	});
+});
 </script>
 
 <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
@@ -348,7 +360,7 @@ $('#snackbar-user-status label').click(function() {
 					},
 				}],
 				xAxes: [{
-					scaleLabel: { display: false },  
+					scaleLabel: { display: false },
 					gridLines:  { display: false },
 				}],
 			},
@@ -384,7 +396,7 @@ $('#snackbar-user-status label').click(function() {
 		var autocomplete = new google.maps.places.Autocomplete(input, options);
 
 		if ($('.submit-field')[0]) {
-			setTimeout(function(){ 
+			setTimeout(function(){
 				$(".pac-container").prependTo("#autocomplete-container");
 			}, 300);
 		}

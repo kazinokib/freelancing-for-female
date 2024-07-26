@@ -1,21 +1,21 @@
 <?php
 @ob_start();
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-  
-  
- 
+
+
+
   include ("connection.php");
   include("page_content/header.php");
   if($user_id == NULL || $user_id =="")
 {
-   header("location:login.php"); 
-}  
+   header("location:login.php");
+}
 
  $gig_id =$_REQUEST['gig_id'];
  $sql = "SELECT * from gig where id = $gig_id";
  $res = mysqli_query($conn,$sql);
  $row = mysqli_fetch_array($res);
- 
+
 
 ?>
 	<div class="clearfix"></div>
@@ -87,15 +87,28 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 									<div class="col-xl-4">
 										<div class="submit-field">
-											<h5>City</h5>
+											<h5>Province</h5>
 											<div class="input-with-icon">
 												<div id="autocomplete-container">
-													<input id="autocomplete-input" class="with-border city" type="text" placeholder="Type Address" value = "<?php echo $row["city"]?>">
+													<select id="autocomplete-input" name="city" class="form-control city" required>
+														<option value="">Select Province</option>
+														<option value="ontario" <?php if($row["city"] == "ontario") echo "selected"; ?>>Ontario</option>
+														<option value="quebec" <?php if($row["city"] == "quebec") echo "selected"; ?>>Quebec</option>
+														<option value="nova_scotia" <?php if($row["city"] == "nova_scotia") echo "selected"; ?>>Nova Scotia</option>
+														<option value="new_brunswick" <?php if($row["city"] == "new_brunswick") echo "selected"; ?>>New Brunswick</option>
+														<option value="manitoba" <?php if($row["city"] == "manitoba") echo "selected"; ?>>Manitoba</option>
+														<option value="british_columbia" <?php if($row["city"] == "british_columbia") echo "selected"; ?>>British Columbia</option>
+														<option value="prince_edward_island" <?php if($row["city"] == "prince_edward_island") echo "selected"; ?>>Prince Edward Island</option>
+														<option value="saskatchewan" <?php if($row["city"] == "saskatchewan") echo "selected"; ?>>Saskatchewan</option>
+														<option value="alberta" <?php if($row["city"] == "alberta") echo "selected"; ?>>Alberta</option>
+														<option value="newfoundland_and_labrador" <?php if($row["city"] == "newfoundland_and_labrador") echo "selected"; ?>>Newfoundland and Labrador</option>
+													</select>
 												</div>
 												<i class="icon-material-outline-location-on"></i>
 											</div>
 										</div>
 									</div>
+
 
 									<div class="col-xl-4">
 										<div class="submit-field">
@@ -112,7 +125,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 														<input id = "base_price_max" class="with-border" type="text" placeholder="Max" value = "<?php echo $row["base_price_max"]  ?>">
 														<i class="currency">BDT</i>
 													</div>
-												</div>  
+												</div>
 											</div>
 										</div>
 									</div>
@@ -127,7 +140,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 														<i class="currency">Days</i>
 													</div>
 												</div>
-												
+
 											</div>
 										</div>
 									</div>
@@ -174,7 +187,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 				<!-- Footer -->
 				<div class="dashboard-footer-spacer"></div>
 				<div class="small-footer margin-top-15">
-					
+
 					<ul class="footer-social-links">
 						<li>
 							<a href="#" title="Facebook" data-tippy-placement="top">
@@ -220,10 +233,10 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script type="text/javascript">
-  
-  
+
+
   function update_gig(gig_id)
-  
+
   {
       var gig_title = $("#gig_title").val();
 	var city = $(".city").val();
@@ -232,9 +245,9 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	var gig_category = $("#gig_category").val();
 	var gig_description = $("#gig_description").val();
 	var duration = $("#duration").val();
-    
-    
-	
+
+
+
      var formData= new FormData();
     formData.append('gig_title',gig_title);
     formData.append("city",city);
@@ -247,7 +260,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
     formData.append("update_gig","update_gig");
     formData.append("gig_id",gig_id);
        formData.append('file',$('#upload')[0].files[0]);
-     
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -256,27 +269,27 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
       data:formData,
       success:function(data,status){
 
-        
+
          swal({
   title: "Your gig is successfully created",
- 
+
   icon: "success",
-  
- 
+
+
 })
 .then((isConfrim) => {
   if (isConfrim) {
       window.location.href = 'main_page_gig.php?category=all&location=all';
-  } 
+  }
 });
-        
+
 
       },
 
     });
-      
+
   }
-  	
+
   	function gig_post()
   	{
     var gig_title = $("#gig_title").val();
@@ -286,9 +299,9 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	var gig_category = $("#gig_category").val();
 	var gig_description = $("#gig_description").val();
 	var duration = $("#duration").val();
-    
-    
-	
+
+
+
      var formData= new FormData();
     formData.append('gig_title',gig_title);
     formData.append("city",city);
@@ -300,7 +313,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
        formData.append("user_id",<?php echo $user_id ?>);
     formData.append("gig_post","gig_post");
        formData.append('file',$('#upload')[0].files[0]);
-     
+
     $.ajax({
       processData: false,
       contentType: false,
@@ -309,20 +322,20 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
       data:formData,
       success:function(data,status){
 
-        
+
          swal({
   title: "Your gig is successfully created",
- 
+
   icon: "success",
-  
- 
+
+
 })
 .then((isConfrim) => {
   if (isConfrim) {
       window.location.href = 'main_page_gig.php?category=all&location=all';
-  } 
+  }
 });
-        
+
 
       },
 
@@ -343,12 +356,12 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 	<script src="js/magnific-popup.min.js"></script>
 	<script src="js/slick.min.js"></script>
 	<script src="js/custom.js"></script>
-	
+
 
 	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
 	<script>
 // Snackbar for user status switcher
-$('#snackbar-user-status label').click(function() { 
+$('#snackbar-user-status label').click(function() {
 	Snackbar.show({
 		text: 'Your status has been changed!',
 		pos: 'bottom-center',
@@ -357,8 +370,8 @@ $('#snackbar-user-status label').click(function() {
 		duration: 3000,
 		textColor: '#fff',
 		backgroundColor: '#383838'
-	}); 
-}); 
+	});
+});
 </script>
 
 <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
@@ -414,7 +427,7 @@ $('#snackbar-user-status label').click(function() {
 					},
 				}],
 				xAxes: [{
-					scaleLabel: { display: false },  
+					scaleLabel: { display: false },
 					gridLines:  { display: false },
 				}],
 			},
@@ -450,7 +463,7 @@ $('#snackbar-user-status label').click(function() {
 		var autocomplete = new google.maps.places.Autocomplete(input, options);
 
 		if ($('.submit-field')[0]) {
-			setTimeout(function(){ 
+			setTimeout(function(){
 				$(".pac-container").prependTo("#autocomplete-container");
 			}, 300);
 		}
