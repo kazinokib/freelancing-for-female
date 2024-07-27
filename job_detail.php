@@ -1,74 +1,58 @@
 <?php
 
-   include("connection.php");
-   include("page_content/header.php");
+include("connection.php");
+include("page_content/header.php");
 
-  $job_id = $_REQUEST['job_id'];
-  $sql = "SELECT * from job where id = $job_id";
-  $res = mysqli_query($conn,$sql);
-  $row = mysqli_fetch_array($res);
-  $job_given_id = $row['user_id'];
-  $job_title = $row['job_title'];
-  $base_price_min = $row['base_price_min'];
-  $base_price_max = $row['base_price_max'];
-  $job_description = $row['job_description'];
-  $job_duration = $row['job_duration'];
-  $job_date = $row['job_date'];
-  $job_file = $row['job_file'];
+$job_id = $_REQUEST['job_id'];
+$sql = "SELECT * from job where id = $job_id";
+$res = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($res);
+$job_given_id = $row['user_id'];
+$job_title = $row['job_title'];
+$base_price_min = $row['base_price_min'];
+$base_price_max = $row['base_price_max'];
+$job_description = $row['job_description'];
+$job_duration = $row['job_duration'];
+$job_date = $row['job_date'];
+$job_file = $row['job_file'];
 
+date_default_timezone_set('Asia/Dhaka');
+$date = date('d-m-Y');
+$currentdate = strtotime($date);
+$timefromdb = strtotime($job_date);
+$daysleft = ($currentdate - $timefromdb) / (60 * 60 * 24);
 
-  date_default_timezone_set('Asia/Dhaka');
-           $date = date('d-m-Y');
-        $currentdate= strtotime( $date );
-    $timefromdb = strtotime( $job_date );
-    $daysleft = ($currentdate - $timefromdb)/(60 * 60 * 24);
+$remaining_day = $job_duration - $daysleft;
 
-    $remaining_day= $job_duration - $daysleft;
+$sql2 = "select * from user where id = $job_given_id";
+$res2 = mysqli_query($conn, $sql2);
+$row2 = mysqli_fetch_array($res2);
+$name = $row2['name'];
 
+$sql3 = "SELECT * from rating where rating_to = $job_given_id";
+$res3 = mysqli_query($conn, $sql3);
+$rating = 0;
 
+$num_rows = mysqli_num_rows($res3);
 
+if ($num_rows > 0) {
+    while ($row3 = mysqli_fetch_array($res3)) {
+        $rating = $rating + $row3["given_rating"];
+    }
+    $rating = $rating / $num_rows;
+} else {
+    $rating = "No ratings available"; // or set to 0, or another default value
+}
 
+$res4 = mysqli_query($conn, $sql3);
 
-  $sql2 = "select * from user where id = $job_given_id";
-  $res2 = mysqli_query($conn,$sql2);
-  $row2 = mysqli_fetch_array($res2);
-  $name = $row2['name'];
-
-  $sql3 = "SELECT * from rating where rating_to = $job_given_id ";
-
-  $res3 = mysqli_query($conn,$sql3);
-  $rating =0;
-
-  while($row3 = mysqli_fetch_array($res3))
-  {
-      $rating= $rating+$row3["given_rating"];
-  }
-
-
-  $rating = $rating/mysqli_num_rows($res3);
-
-
-  $res4 = mysqli_query($conn,$sql3);
-
-
-
-
-
-
- if($user_id !=NULL)
- {
-  $sql3 = "SELECT * from bid_details where user_id =$user_id and job_id = $job_id";
-  $res3 = mysqli_query($conn,$sql3);
-  $previously_bid = mysqli_num_rows($res3);
- }
-
-
-
-
-
-
-
+if ($user_id != NULL) {
+    $sql3 = "SELECT * from bid_details where user_id = $user_id and job_id = $job_id";
+    $res3 = mysqli_query($conn, $sql3);
+    $previously_bid = mysqli_num_rows($res3);
+}
 ?>
+
 
 <div class="clearfix"></div>
 <!-- Header Container / End -->
