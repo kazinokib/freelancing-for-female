@@ -201,7 +201,7 @@ if ($user_id != NULL) {
 							<span class="bidding-detail">Set your <strong>minimal rate</strong></span>
 
 							<!-- Price Slider -->
-							<div class="bidding-value">BDT<span id="biddingVal"></span></div>
+							<div class="bidding-value">CAD<span id="biddingVal"></span></div>
 							<input class="bidding-slider" id ="rate" type="text" value="" data-slider-handle="custom" data-slider-currency="$" data-slider-min='<?php echo $base_price_min ?>' data-slider-max='<?php echo $base_price_max ?>' data-slider-value="auto" data-slider-step="50" data-slider-tooltip="hide" />
 
 							<!-- Headline -->

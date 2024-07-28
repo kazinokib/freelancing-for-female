@@ -113,13 +113,13 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 												<div class="col-xl-6">
 													<div class="input-with-icon">
 														<input id = "base_price_min" class="with-border" type="text" placeholder="Min">
-														<i class="currency">BDT</i>
+														<i class="currency">CAD</i>
 													</div>
 												</div>
 												<div class="col-xl-6">
 													<div class="input-with-icon">
 														<input id = "base_price_max" class="with-border" type="text" placeholder="Max">
-														<i class="currency">BDT</i>
+														<i class="currency">CAD</i>
 													</div>
 												</div>
 											</div>
