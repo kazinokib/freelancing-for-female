@@ -143,7 +143,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 											<!-- Name -->
 											<div class="freelancer-name">
 												<h4><strong><?php echo $job_title ?></strong></h4>
-												<h4><a href="#" style="color:blue"><?php echo $name ?> </a> is bidding your job at <?php echo $bidding_price?>tk within <?php echo $work_duration ?> days </h4>
+												<h4><a href="#" style="color:blue"><?php echo $name ?> </a> is bidding your job at <?php echo $bidding_price?>CAD within <?php echo $work_duration ?> days </h4>
 
 												<!-- Details -->
 
@@ -206,7 +206,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 											<div class="freelancer-name">
 
 													<h4><strong><?php echo $gig_title ?></strong></h4>
-												<h4><a href="#"  style="color:blue"><?php echo $name ?> </a> Interested your gig at <?php echo $proposed_rate ?>tk within <?php echo $proposed_duration?> days  </h4>
+												<h4><a href="#"  style="color:blue"><?php echo $name ?> </a> Interested your gig at <?php echo $proposed_rate ?>CAD within <?php echo $proposed_duration?> days  </h4>
 
 
 

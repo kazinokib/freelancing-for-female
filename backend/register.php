@@ -274,7 +274,7 @@ if(isset($_POST['job_post']))
 	$mask = $row['mask'];
 	$msg ='Client name:'.$client_name.
 	'Job description: '.$job_description.
-	'Maximum price: '.$base_price_max.'tk'.
+	'Maximum price: '.$base_price_max.'CAD'.
 	'Duration: '.$job_duration.'days'.
 	'Contact No: '.$contact_no;
 	$sender->sms($msg,$mask);

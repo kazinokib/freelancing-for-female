@@ -88,7 +88,7 @@ if ($res && mysqli_num_rows($res) > 0) {
 					<div class="right-side">
 						<div class="salary-box">
 							<div class="salary-type">Base Price</div>
-							<div class="salary-amount"><?php echo $base_price_min ?> tk - <?php echo $base_price_max ?> tk</div>
+							<div class="salary-amount"><?php echo $base_price_min ?> CAD - <?php echo $base_price_max ?> CAD</div>
 						</div>
 					</div>
 				</div>

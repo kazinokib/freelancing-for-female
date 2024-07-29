@@ -172,7 +172,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 												<h4 style="color:#6EBA10"><strong>Your accepted gig</strong></h4>
 												<h4>Gig Title: <strong><?php echo $gig_title ?></strong></h4>
 												<h4>Client name : <a href="#" style="color:blue"><?php echo $name ?> </a></h4>
-												<h4>Proposed Price : <a href="#" style="color:blue"><?php echo $proposed_price ?> </a>tk</h4>
+												<h4>Proposed Price : <a href="#" style="color:blue"><?php echo $proposed_price ?> </a>CAD</h4>
 
 
 
@@ -234,7 +234,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 												<h4 style="color:#6EBA10" ><strong>Your requested gig</strong></h4>
 												<h4>Gig Title: <strong><?php echo $gig_title ?></strong></h4>
 												<h4>Freelancer name : <a href="#" style="color:blue"><?php echo $name ?> </a></h4>
-												<h4>Proposed Price : <a href="#" style="color:blue"><?php echo $proposed_price ?> </a>tk</h4>
+												<h4>Proposed Price : <a href="#" style="color:blue"><?php echo $proposed_price ?> </a>CAD</h4>
 
 
 
